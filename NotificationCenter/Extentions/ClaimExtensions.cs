@@ -8,14 +8,14 @@ namespace NotificationCenter.Extentions
 {
     public static class ClaimExtensions
     {
-        public static string GetId(this ClaimsPrincipal user)
+        public static Guid? GetId(this ClaimsPrincipal user)
         {
             var idClaim = user.Claims.FirstOrDefault(i => i.Type.Equals("Id"));
             if (idClaim != null)
             {
-                return idClaim.Value;
+                return Guid.Parse(idClaim.Value);
             }
-            return "";
+            return null;
         }
 
         public static bool IsHCDC(this ClaimsPrincipal user)

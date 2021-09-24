@@ -17,7 +17,7 @@ namespace Services.Hubs
         Task NewNotificationCount(int count, string userId);
     }
 
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public class NotificationHub : Hub, INotificationHub
     {
         public static ConcurrentDictionary<string, List<string>> ConnectedUsers = new ConcurrentDictionary<string, List<string>>();
