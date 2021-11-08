@@ -1,0 +1,27 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: notification-center
+  namespace: default
+  labels:
+    app: notification-center
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-center
+  template:
+    metadata:
+      labels:
+        app: notification-center
+        role: rolling-update
+        build_number: <TAG>
+    spec:
+      containers:
+        - name: notification-center
+          image: 'bakcovn/notification-center:latest'
+      imagePullSecrets:
+        - name: regcred
+  strategy:
+    type: RollingUpdate
