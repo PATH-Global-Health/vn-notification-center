@@ -16,7 +16,7 @@ spec:
       labels:
         app: notification-center
         role: rolling-update
-        build_number: <TAG>
+        build_number: "<TAG>"
     spec:
       containers:
         - name: notification-center
