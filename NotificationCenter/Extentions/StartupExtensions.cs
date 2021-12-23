@@ -27,7 +27,10 @@ namespace NotificationCenter.Extentions
 
         public static void ConfigCors(this IServiceCollection services)
         {
-            services.AddCors(options => options.AddPolicy("AllowAll", builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            //services.AddCors(options => options.AddPolicy("AllowAll", builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            services.AddCors(options => options.AddPolicy("AllowAll", builder => builder.AllowAnyHeader().AllowAnyMethod()
+            .WithOrigins("http://localhost:3000", "http://202.78.227.174:6969", "http://signalr.dev1:8080").AllowCredentials()));
+
         }
 
         public static void ConfigMongoDb(this IServiceCollection services, string connectionString, string databaseName)
